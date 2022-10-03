@@ -7,7 +7,7 @@ mongoose.connect("mongodb://localhost:27017/mern-type", () => {
 })
 const app = express()
 
-
+app.use(express.json())
 app.use("/users", UsersRoute)
 app.listen("8080", () => {
     console.log("server is running on port 8080")
