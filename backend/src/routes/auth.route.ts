@@ -1,9 +1,11 @@
-import { login } from './../controller/auth.controller';
+import { login, refresh, logout } from './../controller/auth.controller';
 
 import express from "express"
 
 export const router = express.Router()
 
-router.post("/", login)
+router.post("/login", login)
+router.get("/refresh", refresh)
+router.post("/refresh", logout)
 
 export const AuthRoutes = router 
