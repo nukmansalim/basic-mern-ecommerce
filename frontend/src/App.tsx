@@ -1,8 +1,17 @@
 import React from 'react';
-
+import { Routes, Route, Link, } from "react-router-dom"
+import Login from './pages/Login';
 function App() {
   return (
-    <h1>Testing</h1>
+    <>
+
+      <Routes>
+        <Route path='login' element={<Login />} />
+      </Routes>
+      <h1>Testing</h1>
+
+
+    </>
   );
 }
 
