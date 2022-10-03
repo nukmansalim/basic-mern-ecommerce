@@ -2,7 +2,8 @@ import { AuthRoutes } from './routes/auth.route';
 import { UserRoutes } from './routes/users.route';
 import express from "express"
 import mongoose from "mongoose"
-
+import dotenv from "dotenv"
+dotenv.config()
 mongoose.connect("mongodb://localhost:27017/mern-type", () => {
     console.log("Database is connected")
 })

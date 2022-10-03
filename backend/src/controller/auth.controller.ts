@@ -13,4 +13,14 @@ export const login = async (req: Request, res: Response) => {
 
     const compared = await bcrypt.compare(password, user.password.toString())
     if (!compared) res.status(401).json({ message: "UNAUTHORIZED" })
+
+    const accessToken = jwt.sign({
+        "user": {
+            "username": user.username,
+            "password": user.password,
+        }
+    }, process.env.JWT_SECRET as string)
+
+
+
 }
