@@ -15,7 +15,7 @@ app.use(cookieParser())
 app.use(cors())
 app.use("/users", UserRoutes)
 app.use("/auth", AuthRoutes)
-app.listen("8080", () => {
+app.listen("8001", () => {
     console.log("server is running on port 8080")
 })
 
