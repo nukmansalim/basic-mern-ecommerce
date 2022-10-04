@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { verify, JwtPayload } from "jsonwebtoken";
+import { verify } from "jsonwebtoken";
 
 
 export const verifyToken = async (req: Request, res: Response, next: NextFunction) => {

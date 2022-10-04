@@ -1,28 +1,25 @@
 import React, { FormEvent, useState } from 'react'
 import axios from "axios"
-import { RootState } from '../redux/store'
-import { useSelector, useDispatch } from 'react-redux'
-import { login } from '../redux/slice/authSlice'
-import { FormControl, FormLabel, Input, Button, Box, Flex, Heading } from "@chakra-ui/react"
+import { useNavigate } from 'react-router-dom'
+import { FormControl, Input, Button, Flex, Heading } from "@chakra-ui/react"
 
-const Login = () => {
-
+const Register = () => {
+    const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [email, setEmail] = useState("")
-    const dispatch = useDispatch()
-    const token = useSelector((state: RootState) => state.auth.token)
+    const navigate = useNavigate()
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
     }
 
-    const handleLogin = async () => {
-        const response = await axios.post("http://localhost:8001/auth/login", {
-            email, password
+    const handleRegister = async () => {
+        const response = await axios.post("http://localhost:8001/users/create", {
+            username, email, password
         })
 
         const datas = await response.data
         if (datas) {
-            dispatch(login(datas.accessToken))
+            return navigate("/")
         }
     }
     return (
@@ -35,8 +32,15 @@ const Login = () => {
                 borderRadius={8}
                 boxShadow="lg"
             >
-                <Heading textAlign="center" mb={6}>Sign in</Heading>
+                <Heading textAlign="center" mb={6}>Sign up</Heading>
                 <FormControl width="250px" height="200px" onSubmit={handleSubmit}>
+                    <Input
+                        onChange={e => setUsername(e.target.value)}
+                        placeholder="johndoe20"
+                        type="email"
+                        variant="filled"
+                        mb={3}
+                    />
                     <Input
                         onChange={e => setEmail(e.target.value)}
                         placeholder="johndoe@gmail.com"
@@ -53,9 +57,9 @@ const Login = () => {
                     />
                     <Button
                         float="right"
-                        onClick={handleLogin}
+                        onClick={handleRegister}
                         colorScheme="blue" mb={8}>
-                        Sign in
+                        Sign up
                     </Button>
 
                 </FormControl>
@@ -64,4 +68,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Register

@@ -4,6 +4,6 @@ import { verifyToken } from '../middleware/verifyToken';
 export const router = express.Router()
 
 router.get("/", verifyToken, getAllUsers)
-router.post("/", createNewUser)
+router.post("/create", createNewUser)
 
 export const UserRoutes = router 
