@@ -3,23 +3,8 @@ import axios from "axios"
 import { RootState } from '../redux/store'
 import { useSelector, useDispatch } from 'react-redux'
 import { login } from '../redux/slice/authSlice'
-import styled from 'styled-components'
+import { FormControl, FormLabel, Input, Button, Box, Flex, Heading } from "@chakra-ui/react"
 
-const Button = styled.button`
-    display: inline-block;
-    font-weight: 400;
-    color: #212529;
-    text-align: center;
-    border: 1px solid transparent;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    border-radius: .25rem;
-    color: #fff;
-    background-color: #0069d9;
-    :hover {
-        background-color: #141abe;
-    }
-`
 const Login = () => {
 
     const [password, setPassword] = useState("")
@@ -41,30 +26,38 @@ const Login = () => {
         }
     }
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <Flex h="100vh" alignItems="center" justifyContent="center">
 
+            <Flex
+                flexDirection="column"
+                bg="gray.100"
+                p={12}
+                borderRadius={8}
+                boxShadow="lg"
+            >
+                <Heading textAlign="center" mb={6}>Sign in</Heading>
+                <FormControl width="250px" height="200px" onSubmit={handleSubmit}>
+                    <Input
+                        placeholder="johndoe@gmail.com"
+                        type="email"
+                        variant="filled"
+                        mb={3}
+                    />
+                    <Input
+                        placeholder="**********"
+                        type="password"
+                        variant="filled"
+                        mb={6}
+                    />
+                    <Button
+                        onClick={handleLogin}
+                        colorScheme="teal" mb={8}>
+                        Sign in
+                    </Button>
 
-                <label htmlFor="email">email</label>
-                <br />
-                <input
-                    onChange={e => setEmail(e.target.value)}
-                    type="email"
-                    name="email"
-                    id="email" />
-                <br />
-                <label
-                    htmlFor="password">password</label>
-                <br />
-                <input
-                    onChange={e => setPassword(e.target.value)}
-                    type="password"
-                    name="password"
-                    id="password" />
-                <br />
-                <Button onClick={handleLogin}>Login</Button>
-            </form>
-        </div>
+                </FormControl>
+            </Flex>
+        </Flex>
     )
 }
 
