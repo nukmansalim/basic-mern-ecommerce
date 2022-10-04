@@ -3,8 +3,25 @@ import axios from "axios"
 import { RootState } from '../redux/store'
 import { useSelector, useDispatch } from 'react-redux'
 import { login } from '../redux/slice/authSlice'
+import styled from 'styled-components'
+
+const Button = styled.button`
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+    color: #fff;
+    background-color: #0069d9;
+    :hover {
+        background-color: #141abe;
+    }
+`
 const Login = () => {
-    // const [name, setName] = useState("")
+
     const [password, setPassword] = useState("")
     const [email, setEmail] = useState("")
     const dispatch = useDispatch()
@@ -45,7 +62,7 @@ const Login = () => {
                     name="password"
                     id="password" />
                 <br />
-                <button onClick={handleLogin}>Login</button>
+                <Button onClick={handleLogin}>Login</Button>
             </form>
         </div>
     )
