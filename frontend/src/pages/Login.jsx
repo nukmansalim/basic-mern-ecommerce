@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import axios from "axios"
-import { RootState } from '../redux/store'
-import { login } from '../redux/slice/authSlice'
 import { useSelector, useDispatch } from 'react-redux'
+import { login } from '../redux/slice/authSlice'
 const Login = () => {
     // const [name, setName] = useState("")
     const [password, setPassword] = useState("")
     const [email, setEmail] = useState("")
-    const { auth } = useSelector(state => state)
     const dispatch = useDispatch()
+    const token = useSelector(state => state.auth.token)
     const handleSubmit = (e) => {
         e.preventDefault()
     }
@@ -21,20 +20,12 @@ const Login = () => {
         const datas = await response.data
         if (datas) {
             dispatch(login(datas.accessToken))
-            console.log(auth)
         }
     }
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                {/* <label htmlFor="username">username</label>
-                <br />
-                <input
-                    onChange={e => setName(e.target.value)}
-                    type="text"
-                    name="username"
-                    id="username" />
-                <br /> */}
+
 
                 <label htmlFor="email">email</label>
                 <br />

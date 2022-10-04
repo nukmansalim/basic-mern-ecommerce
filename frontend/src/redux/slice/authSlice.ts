@@ -1,19 +1,26 @@
-import { createSlice } from "@reduxjs/toolkit";
-interface IAuth {
-    value: object
-}
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
-    value: {}
-} as IAuth
+    token: null,
+}
 
-export const authSlice = createSlice({
+const LoginbaseUrl = "http://localhost:8080/auth/login"
+
+
+const authSlice = createSlice({
     name: "auth",
     initialState,
     reducers: {
-        login: (state, action) => { state.value = action.payload }
+        logout: (state) => {
+            state.token = null
+        },
+        login: (state, action) => {
+            state.token = action.payload
+        }
     }
+
 })
-const { reducer, actions } = authSlice
-export const { login } = actions
-export default reducer
+export const { logout, login } = authSlice.actions
+export default authSlice.reducer
+
