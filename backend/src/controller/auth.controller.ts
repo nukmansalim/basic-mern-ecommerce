@@ -20,7 +20,7 @@ export const login = async (req: Request, res: Response) => {
             "username": user.username,
         }
     }, process.env.JWT_SECRET as string,
-        { expiresIn: "15m" }
+        { expiresIn: "3d" }
     )
 
     const refreshToken = jwt.sign({
@@ -65,16 +65,16 @@ export const refresh = async (req: Request, res: Response) => {
         }
     )
 }
-
 export const logout = async (req: Request, res: Response) => {
     const cookies = req.cookies
-    if (!cookies?.token) return res.sendStatus(204)
+    if (!cookies?.token) res.status(204).json({ message: "No content" })
     res.clearCookie("token", {
         httpOnly: true,
         sameSite: "none",
         secure: true
     })
-    res.json({ message: "Logout success" })
+    res.json({ message: "Cookies cleared" })
 }
+
 
 

@@ -6,6 +6,6 @@ export const router = express.Router()
 
 router.post("/login", login)
 router.get("/refresh", refresh)
-router.post("/refresh", logout)
+router.post("/logout", logout)
 
 export const AuthRoutes = router 

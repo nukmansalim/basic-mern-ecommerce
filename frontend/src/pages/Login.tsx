@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 import axios from "axios"
+import { RootState } from '../redux/store'
 import { useSelector, useDispatch } from 'react-redux'
 import { login } from '../redux/slice/authSlice'
 const Login = () => {
@@ -7,8 +8,8 @@ const Login = () => {
     const [password, setPassword] = useState("")
     const [email, setEmail] = useState("")
     const dispatch = useDispatch()
-    const token = useSelector(state => state.auth.token)
-    const handleSubmit = (e) => {
+    const token = useSelector((state: RootState) => state.auth.token)
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
     }
 
